@@ -8,6 +8,9 @@ public class Producto {
     private String descripcion;
     private Vector<Ingrediente> ingredientes;
 
+    public Producto() {
+    }
+
     public String getNombre() {
         return nombre;
     }

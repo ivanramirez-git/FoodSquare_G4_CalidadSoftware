@@ -16,6 +16,9 @@ public class Ingrediente {
         return nombre;
     }
 
+    public Ingrediente() {
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
