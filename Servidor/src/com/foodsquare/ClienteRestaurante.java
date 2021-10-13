@@ -80,14 +80,14 @@ public class ClienteRestaurante {
 
                         p.setIngredientes(ingredientes);
                         productos.add(p);
-                        System.out.println(productos.toString());
+                        //System.out.println(productos.toString());
 
                         continuar=true;
                         while(continuar) {
                             System.out.println("Desea guardar y publicar el producto? (Y/n): ");
                             texto=sc.nextLine();
                             if (texto.equals("y") || texto.equals("Y")) {
-                                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                Gson gson = new Gson();
                                 String jsonString = gson.toJson(productos);
                                 //System.out.println(jsonString);
 
