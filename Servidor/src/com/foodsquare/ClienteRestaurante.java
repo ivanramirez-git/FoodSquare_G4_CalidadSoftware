@@ -1,11 +1,11 @@
 package com.foodsquare;
 
+import java.util.Scanner;
+import java.util.Vector;
+
 //import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.util.Scanner;
-import java.util.Vector;
 
 public class ClienteRestaurante {
     public static void main(String[] args){
@@ -65,7 +65,7 @@ public class ClienteRestaurante {
 
                             texto=sc.nextLine();
                             while(continuar) {
-                                System.out.print("¿Desea agregar un nuevo ingrediente? (Y/n): ");
+                                System.out.print("Desea agregar un nuevo ingrediente? (Y/n): ");
                                 texto=sc.nextLine();
                                 if (texto.equals("y") || texto.equals("Y")) {
                                     break;
@@ -84,12 +84,16 @@ public class ClienteRestaurante {
 
                         continuar=true;
                         while(continuar) {
-                            System.out.println("¿Desea guardar y publicar el producto? (Y/n): ");
+                            System.out.println("Desea guardar y publicar el producto? (Y/n): ");
                             texto=sc.nextLine();
                             if (texto.equals("y") || texto.equals("Y")) {
                                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                                 String jsonString = gson.toJson(productos);
-                                System.out.println(jsonString);
+                                //System.out.println(jsonString);
+
+                                conectorRestaurante c = new conectorRestaurante();
+                                c.enviar_servidor(jsonString);
+
                                 break;
                             } else if (texto.equals("N") || texto.equals("n")) {
                                 continuar=false;
