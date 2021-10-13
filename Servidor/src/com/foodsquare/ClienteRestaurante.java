@@ -1,12 +1,16 @@
 package com.foodsquare;
 
+//import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.Scanner;
 import java.util.Vector;
 
 public class ClienteRestaurante {
     public static void main(String[] args){
         // write your code here
-        Vector<Producto> usuarios;
+        Vector<Producto> productos = new Vector<Producto>();
         Vector<Pedido> pedidos;
         Scanner sc = new Scanner(System.in);
         String texto;
@@ -40,26 +44,59 @@ public class ClienteRestaurante {
                         Vector<Ingrediente> ingredientes = new Vector<Ingrediente>();
                         System.out.println("Ingredientes: ");
                         int contador=0;
-                        while(true) {
+                        boolean continuar=true;
+                        while(continuar) {
 
                             System.out.println();
                             Ingrediente i = new Ingrediente();
                             contador++;
                             System.out.println("\t"+contador + ". ingrediente.");
 
-                            System.out.println("\t\tNombre del ingrediente: ");
+                            System.out.print("\t\tNombre del ingrediente: ");
+                            sc.nextLine();
                             texto = sc.nextLine();
                             i.setNombre(texto);
 
+                            System.out.print("\t\tCantidad del ingrediente: ");
                             entero = sc.nextInt();
                             i.setCantidad(entero);
                             ingredientes.add(i);
-                            break;
+
+
+                            texto=sc.nextLine();
+                            while(continuar) {
+                                System.out.print("¿Desea agregar un nuevo ingrediente? (Y/n): ");
+                                texto=sc.nextLine();
+                                if (texto.equals("y") || texto.equals("Y")) {
+                                    break;
+                                } else if (texto.equals("N") || texto.equals("n")) {
+                                    continuar=false;
+                                } else {
+                                    System.out.println("Lo siento no te he entendido.");
+                                }
+                            }
+
                         }
+
                         p.setIngredientes(ingredientes);
+                        productos.add(p);
+                        System.out.println(productos.toString());
 
-
-
+                        continuar=true;
+                        while(continuar) {
+                            System.out.println("¿Desea guardar y publicar el producto? (Y/n): ");
+                            texto=sc.nextLine();
+                            if (texto.equals("y") || texto.equals("Y")) {
+                                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                String jsonString = gson.toJson(productos);
+                                System.out.println(jsonString);
+                                break;
+                            } else if (texto.equals("N") || texto.equals("n")) {
+                                continuar=false;
+                            } else {
+                                System.out.println("Lo siento no te he entendido.");
+                            }
+                        }
 
                         System.out.println();
                         break;
