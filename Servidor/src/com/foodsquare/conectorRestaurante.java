@@ -9,7 +9,7 @@ public class conectorRestaurante {
 
     Socket socket_restaurante;
     int puerto = 9000;
-    String ip_server = "192.168.0.103";
+    String ip_server = "192.168.0.104";
     BufferedReader entrada;
     PrintStream salida;
 

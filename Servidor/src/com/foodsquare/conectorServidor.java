@@ -9,21 +9,21 @@ public class conectorServidor {
     ServerSocket server;
     Socket socket;
     int puerto = 9000;
-    DataOutputStream salida;
+    PrintStream salida;
     BufferedReader entrada;
 
     public void iniciar() {
         try {
             server = new ServerSocket(puerto);
             socket = new Socket();
+            System.out.println("Servidor iniciado");
             socket = server.accept();
-
             entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String mensaje = entrada.readLine();
             System.out.println(mensaje);
 
-            salida = new DataOutputStream(socket.getOutputStream());
-            salida.writeUTF("Recibido");
+            salida = new PrintStream(socket.getOutputStream());
+            salida.println("Recibido");
             socket.close();
         }catch (Exception e){};
     }
