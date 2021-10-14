@@ -12,19 +12,61 @@ public class conectorServidor {
     PrintStream salida;
     BufferedReader entrada;
 
-    public void iniciar() {
-        try {
-            server = new ServerSocket(puerto);
-            socket = new Socket();
-            System.out.println("Servidor iniciado");
-            socket = server.accept();
-            entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String mensaje = entrada.readLine();
-            System.out.println(mensaje);
 
-            salida = new PrintStream(socket.getOutputStream());
-            salida.println("Recibido");
-            socket.close();
-        }catch (Exception e){};
+    // ID de Peticiones
+    /*
+    1 Listar productos
+    2 Guardar nuevo producto
+    3 Listar restaurantes
+     */
+    public void iniciar() {
+        while (true) {
+            try {
+                server = new ServerSocket(puerto);
+                socket = new Socket();
+                System.out.println("Servidor iniciado");
+                socket = server.accept();
+                entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                String peticion = entrada.readLine();
+
+
+                switch (Integer.parseInt(peticion)) {
+                    case 1:
+                        System.out.println(peticion);
+
+                        salida = new PrintStream(socket.getOutputStream());
+                        salida.println("Listar productos");
+                        socket.close();
+                        break;
+                    case 2:
+                        System.out.println(peticion);
+
+                        salida = new PrintStream(socket.getOutputStream());
+                        salida.println("Guardar nuevo producto");
+                        socket.close();
+                        break;
+                    case 3:
+                        System.out.println(peticion);
+
+                        salida = new PrintStream(socket.getOutputStream());
+                        salida.println("Listar restaurantes");
+                        socket.close();
+                        break;
+                    default:
+                        System.out.println(peticion);
+
+                        salida = new PrintStream(socket.getOutputStream());
+                        salida.println("Peticiones: " +
+                                "1. Listar productos\n" +
+                                "2. Guardar nuevo producto\n" +
+                                "3. Listar restaurantes");
+                        socket.close();
+
+                        break;
+                }
+
+            } catch (Exception e) {
+            }
+        }
     }
 }

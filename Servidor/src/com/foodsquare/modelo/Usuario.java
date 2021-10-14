@@ -1,7 +1,5 @@
 package com.foodsquare.modelo;
 
-import com.foodsquare.modelo.Pedido;
-
 public class Usuario {
     private String nombre;
     private int telefono;
