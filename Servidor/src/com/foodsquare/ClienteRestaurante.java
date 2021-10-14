@@ -19,6 +19,8 @@ public class ClienteRestaurante {
     public static void main(String[] args) throws IOException {
 
         // write your code here
+        setup();
+        System.out.println();
 
 
         Vector<Producto> productos = new Vector<Producto>();
@@ -120,6 +122,7 @@ public class ClienteRestaurante {
 
                         //Aqui listar pedidos
 
+
                         System.out.println();
                         break;
                     case 0:
@@ -143,7 +146,7 @@ public class ClienteRestaurante {
         System.out.println("2. Listar nuevos pedidoss.");
         System.out.println("0. Cancelar.");
     }
-    private void setup(){
+    private static void setup(){
 
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader (isr);
@@ -156,8 +159,8 @@ public class ClienteRestaurante {
 
     }
 
-    private void listarRestaurantes() {
+    private static void listarRestaurantes() {
         conectorRestaurante c = new conectorRestaurante();
-        c.listarRestaurantes_enviarServidor("Listar Restaurantes");
+        c.listarRestaurantes_enviarServidor("1");
     }
 }

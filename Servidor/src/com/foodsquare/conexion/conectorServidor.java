@@ -20,7 +20,7 @@ public class conectorServidor {
     3 Listar restaurantes
      */
     public void iniciar() {
-        while (true) {
+
             try {
                 server = new ServerSocket(puerto);
                 socket = new Socket();
@@ -60,13 +60,13 @@ public class conectorServidor {
                                 "1. Listar productos\n" +
                                 "2. Guardar nuevo producto\n" +
                                 "3. Listar restaurantes");
-                        socket.close();
+                        //socket.close();
 
                         break;
                 }
 
             } catch (Exception e) {
             }
-        }
+
     }
 }
