@@ -1,5 +1,7 @@
 package com.foodsquare;
 
+import com.foodsquare.conexion.conectorServidor;
+
 public class Servidor {
 
     public static void main(String[] args) {

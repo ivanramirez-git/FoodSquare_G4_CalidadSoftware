@@ -1,6 +1,6 @@
 package com.foodsquare;
 
-import com.google.gson.Gson;
+import com.foodsquare.modelo.Usuario;
 
 import java.util.Scanner;
 import java.util.Vector;
