@@ -10,6 +10,7 @@ public class Servidor {
 	// write your code here
         //setup();
         persistencia p = new persistencia();
-        p.iniciarConexion();
+        while(true)
+            p.iniciarConexion();
     }
 }
