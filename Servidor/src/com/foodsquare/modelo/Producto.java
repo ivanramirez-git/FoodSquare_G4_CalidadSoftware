@@ -8,6 +8,15 @@ public class Producto {
     private String descripcion;
     private String rutaImagen;
     private Vector<Ingrediente> ingredientes;
+    private Boolean entregado;
+
+    public Boolean getEntregado() {
+        return entregado;
+    }
+
+    public void setEntregado(Boolean entregado) {
+        this.entregado = entregado;
+    }
 
     public Producto() {
     }
@@ -64,9 +73,11 @@ public class Producto {
     public String toString() {
         return "Producto{" +
                 "nombre='" + nombre + '\'' +
+                ", nombreRestaurante='" + nombreRestaurante + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", rutaImagen=" + rutaImagen +
+                ", rutaImagen='" + rutaImagen + '\'' +
                 ", ingredientes=" + ingredientes +
+                ", entregado=" + entregado +
                 '}';
     }
 }

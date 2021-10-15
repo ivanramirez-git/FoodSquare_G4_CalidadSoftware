@@ -1,16 +1,15 @@
 package com.foodsquare;
 
-import com.foodsquare.conexion.conectorServidor;
+import com.foodsquare.servidor.persistencia;
+
+import java.io.IOException;
 
 public class Servidor {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 	// write your code here
-        while (true) {
-            conectorServidor c = new conectorServidor();
-            c.iniciar();
-        }
-
-
+        //setup();
+        persistencia p = new persistencia();
+        p.iniciarConexion();
     }
 }

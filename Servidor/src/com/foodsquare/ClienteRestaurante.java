@@ -105,8 +105,14 @@ public class ClienteRestaurante {
                                 Gson gson = new Gson();
                                 String jsonString = gson.toJson(productos);
                                 //System.out.println(jsonString);
+
+                                enviarPeticion("2");
+
+
                                 conectorRestaurante c = new conectorRestaurante();
                                 c.nuevoProducto_enviarServidor(jsonString);
+
+
                                 break;
                             } else if (texto.equals("N") || texto.equals("n")) {
                                 continuar=false;
@@ -146,7 +152,7 @@ public class ClienteRestaurante {
         System.out.println("2. Listar nuevos pedidoss.");
         System.out.println("0. Cancelar.");
     }
-    private static void setup(){
+    private static void setup() throws IOException {
 
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader (isr);
@@ -154,13 +160,13 @@ public class ClienteRestaurante {
         System.out.println(".:: Configuracion ::.");
         System.out.println();
         System.out.println(".:: Seleccione un restaurante de la lista ::.");
-
-        listarRestaurantes();
+        String id_peticion = br.readLine();
+        enviarPeticion(id_peticion);
 
     }
 
-    private static void listarRestaurantes() {
+    private static void enviarPeticion(String id_peticion) {
         conectorRestaurante c = new conectorRestaurante();
-        c.listarRestaurantes_enviarServidor("1");
+        c.peticion_idPeticion(id_peticion);
     }
 }

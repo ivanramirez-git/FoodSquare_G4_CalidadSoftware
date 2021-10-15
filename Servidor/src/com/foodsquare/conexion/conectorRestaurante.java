@@ -9,7 +9,7 @@ public class conectorRestaurante {
 
     Socket socket_restaurante;
     int puerto = 9000;
-    String ip_server = "192.168.0.103";
+    String ip_server = "http://localhost/";
     BufferedReader entrada;
     PrintStream salida;
 
@@ -35,18 +35,20 @@ public class conectorRestaurante {
         }catch (Exception e){};
     }
 
-    public void listarRestaurantes_enviarServidor(String listar_restaurantes) {
+    public void peticion_idPeticion(String peticionID) {
         try {
             socket_restaurante = new Socket(ip_server, puerto);
             entrada = new BufferedReader(new InputStreamReader(socket_restaurante.getInputStream()));
-            System.out.println(listar_restaurantes);
+            System.out.println(peticionID);
             salida = new PrintStream(socket_restaurante.getOutputStream());
-            salida.println(listar_restaurantes);
+            salida.println(peticionID);
             String msg = entrada.readLine();
             System.out.println(msg);
             entrada.close();
             salida.close();
             socket_restaurante.close();
-        }catch (Exception e){};
+        }catch (Exception e){
+            System.out.println("Error de Conexion");
+        };
     }
 }

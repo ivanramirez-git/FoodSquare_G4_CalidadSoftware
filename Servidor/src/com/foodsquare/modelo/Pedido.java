@@ -4,13 +4,31 @@ import java.util.Vector;
 
 public class Pedido {
     private Usuario usuario;
-    private Vector<Restaurante> restaurantes;
+    private Vector<Producto> productos;
+    private Boolean entregado;
+
+    public Pedido() {
+    }
+
+    public Pedido(Usuario usuario, Vector<Producto> productos) {
+        this.usuario = usuario;
+        this.productos = productos;
+    }
+
+    public Boolean getEntregado() {
+        return entregado;
+    }
+
+    public void setEntregado(Boolean entregado) {
+        this.entregado = entregado;
+    }
 
     @Override
     public String toString() {
         return "Pedido{" +
                 "usuario=" + usuario +
-                ", restaurantes=" + restaurantes +
+                ", productos=" + productos +
+                ", entregado=" + entregado +
                 '}';
     }
 
@@ -22,17 +40,12 @@ public class Pedido {
         this.usuario = usuario;
     }
 
-    public Vector<Restaurante> getRestaurantes() {
-        return restaurantes;
+    public Vector<Producto> getProductos() {
+        return productos;
     }
 
-    public void setRestaurantes(Vector<Restaurante> restaurantes) {
-        this.restaurantes = restaurantes;
-    }
-
-    public Pedido(Usuario usuario, Vector<Restaurante> restaurantes) {
-        this.usuario = usuario;
-        this.restaurantes = restaurantes;
+    public void setProductos(Vector<Producto> productos) {
+        this.productos = productos;
     }
 }
 
