@@ -142,8 +142,12 @@ public class persistencia {
                     salida = new PrintStream(socket.getOutputStream());
                     salida.println("Listar productos");
 
+                    entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     peticion = entrada.readLine();
+
                     System.out.println(peticion);
+
+                    salida = new PrintStream(socket.getOutputStream());
                     salida.println("RecibidoX2");
 
                     socket.close();
