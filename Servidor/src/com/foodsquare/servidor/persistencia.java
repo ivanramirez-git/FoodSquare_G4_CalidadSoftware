@@ -18,11 +18,7 @@ public class persistencia {
 
     //Variables de conexion e in/out
     private String texto;
-    ServerSocket server;
-    Socket socket;
-    int puerto = 9000;
-    PrintStream salida;
-    BufferedReader entrada;
+
 
     InputStreamReader isr = new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader (isr);
@@ -125,6 +121,12 @@ public class persistencia {
 
     public void iniciarConexion(){
         try {
+            ServerSocket server;
+            Socket socket;
+            int puerto = 9000;
+            PrintStream salida;
+            BufferedReader entrada;
+
             server = new ServerSocket(puerto);
             socket = new Socket();
             System.out.println("Servidor iniciado");
