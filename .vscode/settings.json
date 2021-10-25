@@ -1,6 +1,7 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "Servidor/libraries/gson-2.8.8.jar"
+        "Servidor/libraries/gson-2.8.8.jar",
+        "/Users/ivan/GitHub/FoodSquare_G4_CalidadSoftware/Servidor/libraries/gson-2.8.8.jar"
     ]
 }
