@@ -1,4 +1,4 @@
-package com.foodsquare.conexion;
+package com.foodsquare.clientetotem.conexion;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
