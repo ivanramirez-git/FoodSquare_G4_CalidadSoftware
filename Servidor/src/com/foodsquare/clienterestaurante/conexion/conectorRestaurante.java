@@ -1,4 +1,4 @@
-package com.foodsquare.conexion;
+package com.foodsquare.clienterestaurante.conexion;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

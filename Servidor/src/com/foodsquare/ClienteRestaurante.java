@@ -1,6 +1,6 @@
 package com.foodsquare;
 
-import com.foodsquare.conexion.conectorRestaurante;
+import com.foodsquare.clienterestaurante.conexion.conectorRestaurante;
 import com.foodsquare.modelo.Ingrediente;
 import com.foodsquare.modelo.Pedido;
 import com.foodsquare.modelo.Producto;
