@@ -7,9 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.BorderLayout;
 
 public class clientetotemGUI {
@@ -58,7 +56,7 @@ public class clientetotemGUI {
 
 			Image image = ImageIO.read(url);
 			
-			lblNewLabel.setIcon((Icon) image);
+			lblNewLabel.setIcon(new ImageIcon(image));
 			
 			
 		} catch (IOException e) {
