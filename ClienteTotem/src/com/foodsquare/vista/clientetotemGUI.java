@@ -1,4 +1,4 @@
-package com.foodsquare;
+package com.foodsquare.vista;
 
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -7,28 +7,21 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+<<<<<<< Updated upstream:ClienteTotem/src/com/foodsquare/clientetotemGUI.java
 import javax.swing.*;
+=======
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+>>>>>>> Stashed changes:ClienteTotem/src/com/foodsquare/vista/clientetotemGUI.java
 import java.awt.BorderLayout;
 
 public class clientetotemGUI {
 
 	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					clientetotemGUI window = new clientetotemGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
@@ -36,6 +29,7 @@ public class clientetotemGUI {
 	 */
 	public clientetotemGUI() throws MalformedURLException {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -43,7 +37,8 @@ public class clientetotemGUI {
 	 */
 	private void initialize() throws MalformedURLException {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 800, 650);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblNewLabel = new JLabel("New label");
