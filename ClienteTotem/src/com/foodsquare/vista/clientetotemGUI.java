@@ -1,20 +1,13 @@
 package com.foodsquare.vista;
 
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import javax.imageio.ImageIO;
-<<<<<<< Updated upstream:ClienteTotem/src/com/foodsquare/clientetotemGUI.java
-import javax.swing.*;
-=======
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
->>>>>>> Stashed changes:ClienteTotem/src/com/foodsquare/vista/clientetotemGUI.java
 import java.awt.BorderLayout;
 
 public class clientetotemGUI {
