@@ -7,6 +7,12 @@ public class Restaurante {
     private String contraseña;
     private Vector<Producto> productos;
 
+    public Restaurante(String nombre, String contraseña) {
+        this.nombre = nombre;
+        this.contraseña = contraseña;
+        productos = new Vector<Producto>();
+    }
+
     public Restaurante(String nombre, String contraseña, Vector<Producto> productos) {
         this.nombre = nombre;
         this.contraseña = contraseña;
@@ -39,4 +45,20 @@ public class Restaurante {
     public void setProductos(Vector<Producto> productos) {
         this.productos = productos;
     }
+
+    public void addProducto(Producto producto){
+        productos.add(producto);
+    }
+
+    public void removeProducto(Producto producto){
+        productos.remove(producto);
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurante{" +
+                "nombre='" + nombre + '\'' +
+                '}';
+    }
+
 }
