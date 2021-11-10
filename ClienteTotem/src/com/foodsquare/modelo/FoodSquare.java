@@ -5,6 +5,7 @@ import java.util.Vector;
 public class FoodSquare {
     String nombreCC;
     String contrasena;
+    String urlImage;
     Vector<Restaurante> restaurantes;
     Vector<Pedido> pedidos;
 
@@ -69,12 +70,26 @@ public class FoodSquare {
         return null;
     }
 
-    public void eliminarRestaurante(String nombre){
+    public void eliminarRestaurante(Restaurante restaurante) {
         for(Restaurante r : restaurantes){
-            if(r.getNombre().equals(nombre)){
+            if(r.getNombre().equals(restaurante.getNombre())){
                 restaurantes.remove(r);
             }
         }
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public FoodSquare(String nombreCC, String contrasena, String urlImage) {
+        this.nombreCC = nombreCC;
+        this.contrasena = contrasena;
+        this.urlImage = urlImage;
     }
 
     @Override
@@ -83,5 +98,14 @@ public class FoodSquare {
                 "nombreCC='" + nombreCC + '\'' +
                 ", restaurantes=" + restaurantes +
                 '}';
+    }
+
+    public void modificarRestaurante(Restaurante restaurante) {
+        for(Restaurante r : restaurantes){
+            if(r.getNombre().equals(restaurante.getNombre())){
+                restaurantes.remove(r);
+                restaurantes.add(restaurante);
+            }
+        }
     }
 }

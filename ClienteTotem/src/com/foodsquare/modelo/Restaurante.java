@@ -4,22 +4,39 @@ import java.util.Vector;
 
 public class Restaurante {
     private String nombre;
-    private String contraseña;
+    private String contrasena;
+    private String urlImagen;
     private Vector<Producto> productos;
 
     public Restaurante(String nombre, String contraseña) {
         this.nombre = nombre;
-        this.contraseña = contraseña;
+        this.contrasena = contraseña;
         productos = new Vector<Producto>();
     }
 
     public Restaurante(String nombre, String contraseña, Vector<Producto> productos) {
         this.nombre = nombre;
-        this.contraseña = contraseña;
+        this.contrasena = contraseña;
         this.productos = productos;
     }
 
+
+
     public Restaurante() {
+    }
+
+    public Restaurante(String nombre, String contraseña, String urlImage) {
+        this.nombre = nombre;
+        this.contrasena = contraseña;
+        this.urlImagen = urlImage;
+    }
+
+    public String getUrlImage() {
+        return urlImagen;
+    }
+
+    public void setUrlImage(String urlImagen) {
+        this.urlImagen = urlImagen;
     }
 
     public String getNombre() {
@@ -30,12 +47,12 @@ public class Restaurante {
         this.nombre = nombre;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public Vector<Producto> getProductos() {

@@ -32,18 +32,23 @@ public class Controlador {
             vista.mostrarMensaje("Ingrese una contraseña adecuada: ");
             String contrasena = vista.leerCadena();
             fs.setContrasena(contrasena);
+            // Pedir url del la plazoleta de comidas
+            vista.mostrarMensaje("Ingrese la url de la imagen de la nueva plazoleta de comidas: ");
+            String urlPlazoleta = vista.leerCadena();
+            fs.setUrlImage(urlPlazoleta);
+
 
         }else {
             vista.mostrarMensajeln("Datos de FoodSquare encontrados");
             // Pedir nombre del plazoleta de comidas
-            vista.mostrarMensajeln("Ingrese el nombre del la plazoleta de comidas");
+            vista.mostrarMensaje("Ingrese el nombre del la plazoleta de comidas: ");
             String nombrePlazoleta = vista.leerCadena();
 
             // Pedir contraseña
-            vista.mostrarMensajeln("Ingrese la contraseña");
+            vista.mostrarMensaje("Ingrese la contraseña: ");
             String contrasena = vista.leerCadena();
 
-            // Verificar contraseña
+            // Validar datos
 
             int intentos = 3;
             while (intentos > 0) {
@@ -60,6 +65,28 @@ public class Controlador {
                 return;
             }
             //vista.mostrarMensajeln(fs.toString());
+
+            // Validar datos nulos
+            if (fs.getNombreCC().equals(null)) {
+                vista.mostrarMensajeln("El nombre de la plazoleta no puede ser nulo");
+                vista.mostrarMensajeln("Ingrese el nombre del la plazoleta de comidas");
+                nombrePlazoleta = vista.leerCadena();
+                fs.setNombreCC(nombrePlazoleta);
+            }
+            if (fs.getContrasena().equals(null)) {
+                vista.mostrarMensajeln("La contraseña no puede ser nula");
+                vista.mostrarMensajeln("Ingrese una contraseña adecuada: ");
+                contrasena = vista.leerCadena();
+                fs.setContrasena(contrasena);
+            }
+            if (fs.getUrlImage().equals(null)) {
+                vista.mostrarMensajeln("La url de la imagen no puede ser nula");
+                vista.mostrarMensajeln("Ingrese una url de imagen,banner, para plazoleta de comidas" +
+                        ": ");
+                String urlImage = vista.leerCadena();
+                fs.setUrlImage(urlImage);
+                persistidor.guardarFoodSquare(fs);
+            }
         }
 
         // Menu
@@ -67,10 +94,11 @@ public class Controlador {
         do {
             vista.mostrarMensajeln("Bienvenido al FoodSquare");
             vista.mostrarMensajeln("1. Agregar restaurante");
-            vista.mostrarMensajeln("2. Eliminar restaurante");
-            vista.mostrarMensajeln("3. Buscar restaurante");
-            vista.mostrarMensajeln("4. Listar restaurantes");
-            vista.mostrarMensajeln("5. Salir y Guardar FoodSquare");
+            vista.mostrarMensajeln("2. Modificar restaurante");
+            vista.mostrarMensajeln("3. Eliminar restaurante");
+            vista.mostrarMensajeln("4. Buscar restaurante");
+            vista.mostrarMensajeln("5. Listar restaurantes");
+            vista.mostrarMensajeln("6. Salir y Guardar FoodSquare");
             vista.mostrarMensaje("Ingrese una opcion: ");
             opcion = vista.leerEntero();
 
@@ -81,12 +109,43 @@ public class Controlador {
                 String nombre = vista.leerCadena();
                 vista.mostrarMensaje("Ingrese la contraseña: ");
                 String contrasenia = vista.leerCadena();
-
-                Restaurante restaurante = new Restaurante(nombre, contrasenia);
-
+                vista.mostrarMensaje("Ingrese la url de la Imagen del Restaurante: ");
+                String urlImage = vista.leerCadena();
+                Restaurante restaurante = new Restaurante(nombre, contrasenia, urlImage);
                 fs.addRestaurante(restaurante);
-                vista.mostrarMensaje("Restaurante agregado");
+                persistidor.guardarFoodSquare(fs);
+                vista.mostrarMensajeln("Restaurante agregado");
+
+
             } else if (opcion == 2) {
+                vista.mostrarMensajeln("");
+                vista.mostrarMensaje("Ingrese el nombre del restaurante: ");
+                String nombre = vista.leerCadena();
+                vista.mostrarMensaje("Ingrese la contraseña: ");
+                String contrasenia = vista.leerCadena();
+
+                // Buscar restaurante
+                Restaurante restaurante = fs.buscarRestaurante(nombre);
+                if (restaurante == null) {
+                    vista.mostrarMensajeln("No se encontro el restaurante");
+                } else {
+                    vista.mostrarMensajeln("Restaurante encontrado");
+                    vista.mostrarMensajeln(restaurante.toString());
+                    vista.mostrarMensaje("Ingrese la nueva contraseña: ");
+                    String nuevaContrasenia = vista.leerCadena();
+                    restaurante.setContrasena(nuevaContrasenia);
+                    vista.mostrarMensajeln("Contraseña modificada");
+
+                    vista.mostrarMensaje("Ingrese la nueva url de la imagen: ");
+                    String nuevaUrlImage = vista.leerCadena();
+                    restaurante.setUrlImage(nuevaUrlImage);
+                    vista.mostrarMensajeln("Url de la imagen modificada");
+                    persistidor.guardarFoodSquare(fs);
+                    fs.modificarRestaurante(restaurante);
+                    vista.mostrarMensajeln("Restaurante modificado");
+
+                }
+            } else if (opcion == 3) {
                 vista.mostrarMensajeln("");
                 vista.mostrarMensaje("Ingrese el nombre del restaurante: ");
                 String nombreEliminar = vista.leerCadena();
@@ -94,11 +153,13 @@ public class Controlador {
                 String contraseniaEliminar = vista.leerCadena();
                 Restaurante restauranteEliminar = fs.buscarRestaurante(nombreEliminar);
                 if (restauranteEliminar != null) {
-                    vista.mostrarMensaje("Restaurante eliminado");
+                    vista.mostrarMensajeln("Restaurante eliminado");
+                    fs.eliminarRestaurante(restauranteEliminar);
+
                 } else {
-                    vista.mostrarMensaje("Restaurante no encontrado");
+                    vista.mostrarMensajeln("Restaurante no encontrado");
                 }
-            } else if (opcion == 3) {
+            } else if (opcion == 4) {
                 vista.mostrarMensajeln("");
                 vista.mostrarMensaje("Ingrese el nombre del restaurante: ");
                 String nombreBuscar = vista.leerCadena();
@@ -110,19 +171,19 @@ public class Controlador {
                     vista.mostrarMensajeln("Restaurante no encontrado");
                 }
 
-            } else if (opcion == 4) {
+            } else if (opcion == 5) {
                 vista.mostrarMensajeln("");
                 vista.mostrarMensajeln("Listado de restaurantes");
                 vista.mostrarMensajeln(fs.toString());
 
-            } else if (opcion == 5) {
+            } else if (opcion == 6) {
                 persistidor.guardarFoodSquare(fs);
                 vista.mostrarMensajeln("FoodSquare guardado");
                 vista.mostrarMensaje("Gracias por usar FoodSquare");
             } else {
                 vista.mostrarMensaje("Opcion incorrecta");
             }
-        }while (opcion != 5);
+        }while (opcion != 6);
 
     }
 }
